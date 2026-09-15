@@ -1,5 +1,7 @@
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import calendar.Meeting;
 import calendar.MeetingCalendar;
 
 public class WeeklyEvent extends CalendarEvent {
@@ -18,8 +20,37 @@ public class WeeklyEvent extends CalendarEvent {
 		this.repeatUntil = repeat;
 	}
 	
+	@Override
 	public void scheduleEvent(MeetingCalendar cal) {
+		//get info
+		scheduleWeekly(cal);
 		return;
+	}
+	
+	//schedule weekly event
+	public void scheduleWeekly(MeetingCalendar cal) {
+		//info
+		String desc = getDescription();
+		String loc = getLocation();
+		GregorianCalendar start = getStartTime();
+		GregorianCalendar end = getEndTime();
+		GregorianCalendar repeat = getRepeatUntil();
+		GregorianCalendar currentStart = start;
+		GregorianCalendar currentEnd = end;
+		
+		//new event
+		Meeting newEvent = new Meeting(desc, loc, start, end);
+		
+		while(currentStart.before(repeat)) {
+			//schedule
+			cal.addMeeting(newEvent);
+			//update start and end
+			currentStart.add(Calendar.DATE, 7);
+			currentEnd.add(Calendar.DATE, 7);
+			newEvent.setStartTime(currentStart);
+			newEvent.setEndTime(currentEnd);
+		}
+		
 	}
 
 	//getters and setters

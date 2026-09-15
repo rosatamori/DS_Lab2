@@ -1,5 +1,6 @@
 import java.util.GregorianCalendar;
 
+import calendar.Meeting;
 import calendar.MeetingCalendar;
 
 public class MultiDayPerWeekEvent extends CalendarEvent {
@@ -18,6 +19,11 @@ public class MultiDayPerWeekEvent extends CalendarEvent {
 	}
 	
 	public void scheduleEvent(MeetingCalendar cal) {
+		//get meeting info
+		//String desc = getDescription();
+		//String loc = getLocation();
+		//GregorianCalendar
+		//Meeting newEvent = new Meeting(getDescription(), getLocation(), getStartTime(), getEndTime());
 		return;
 	}
 
