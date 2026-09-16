@@ -35,8 +35,9 @@ public class WeeklyEvent extends CalendarEvent {
 		GregorianCalendar start = getStartTime();
 		GregorianCalendar end = getEndTime();
 		GregorianCalendar repeat = getRepeatUntil();
-		GregorianCalendar currentStart = start;
-		GregorianCalendar currentEnd = end;
+		//clone
+		GregorianCalendar currentStart = (GregorianCalendar) start.clone();
+		GregorianCalendar currentEnd = (GregorianCalendar) end.clone();
 		
 		//new event
 		Meeting newEvent = new Meeting(desc, loc, start, end);
